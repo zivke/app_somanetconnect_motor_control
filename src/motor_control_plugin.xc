@@ -38,6 +38,18 @@ void motor_control_plugin(server interface somanet_connect_plugin_interface scpi
                         break;
                     }
 
+                    case MOTOR_CONTROL_PLUGIN_SET_TORQUE: {
+                        int value = command[5] | (command[4] << 8) | (command[3] << 16) | (command[2] << 24);
+                        mcsi[i].set_torque(value);
+                        break;
+                    }
+
+                    case MOTOR_CONTROL_PLUGIN_SET_POSITION: {
+                        int value = command[5] | (command[4] << 8) | (command[3] << 16) | (command[2] << 24);
+                        mcsi[i].set_position(value);
+                        break;
+                    }
+
                     default: {
                         printstrln("Unknown command!");
                         break;

@@ -6,7 +6,7 @@ TARGET = SOMANET-C22_Motor-Control_xSCOPE_v13
 # The APP_NAME variable determines the name of the final .xe file. It should
 # not include the .xe postfix. If left blank the name will default to
 # the project name
-APP_NAME = app_somanetconnect_slave
+APP_NAME = app_somanetconnect_motor_control
 
 # The USED_MODULES variable lists other module used by the application.
 USED_MODULES = module_board-support module_somanet_connect

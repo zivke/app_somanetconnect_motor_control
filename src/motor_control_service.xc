@@ -12,6 +12,8 @@ void motor_control_service(unsigned int instance, server interface motor_control
     int run = 0;
 
     int velocity = 100;
+    int torque = 50;
+    int position = 150;
 
     t :> time;
     while(1) {
@@ -33,10 +35,22 @@ void motor_control_service(unsigned int instance, server interface motor_control
                 break;
             }
 
+            case mcsi.set_torque(int torque_value): {
+                torque = torque_value;
+                break;
+            }
+
+            case mcsi.set_position(int position_value): {
+                position = position_value;
+                break;
+            }
+
             case t when timerafter(time) :> void: {
                 if (run) {
 #ifdef SOMANET_CONNECT
                     somanet_connect_xscope_int(MOTCTRL, MOTCTRL_ACTUAL_VELOCITY, instance, velocity);
+                    somanet_connect_xscope_int(MOTCTRL, MOTCTRL_ACTUAL_TORQUE, instance, torque);
+                    somanet_connect_xscope_int(MOTCTRL, MOTCTRL_ACTUAL_POSITION, instance, position);
 #endif
                 }
                 time += period;
